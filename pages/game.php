@@ -17,6 +17,8 @@ if (!isset($_SESSION['player'])) {
 
 // Initialise une nouvelle partie si besoin
 $player = unserialize($_SESSION['player']);
+$game = GameManager::getGame();
+
 if (!isset($_SESSION['game']) || isset($_POST['restart'])) {
     GameManager::startNew();
 }
@@ -39,8 +41,8 @@ ob_start();
 
 <div class="container">
     <div class="stat-bulle">
-        <p>Nombre de coups : </p><?= (int)$moves ?>
-        <p>Temps : </p> <?= gmdate('i:s', (int)$elapsed) ?>
+        <p>Nombre de coups : </p><?= (int)$game->getMoves() ?>
+        <p>Temps : </p> <?= gmdate('i:s', (int)$game->getDuration()) ?>
     </div>
 
     <div class="center">
@@ -53,16 +55,20 @@ ob_start();
 
     <div class="game-grid">
         <?php
-        for ($i = 0; $i < count($deck); $i++):
-            $card = $deck[$i];
-            $showFace = $card->isReveled() || in_array($i, $temps);
-            $imagePath = $showFace ? $card->getImagePath() : "/memory/assets/img/carte.jpg";
+        $card = $game->getDeck();
+        for ($i = 0; $i < count($card); $i++):
+            // echo "<pre>";
+            // var_dump($card, $i);
+            // echo "</pre>";
+            // exit;
+            $showFace = $card[$i]->isReveled(); //|| in_array($i, $card);
+            $imagePath = $showFace ? $card[$i]->getImagePath() : "/memory/assets/img/carte.jpg";
         ?>
 
             <div>
                 <form method="post">
                     <input type="hidden" name="card_index" value="<?= $i ?>">
-                    <button class="card" type="submit" <?= $card->isReveled() ? 'disabled' : '' ?>>
+                    <button class="card" type="submit" <?= $card[$i]->isReveled() ? 'disabled' : '' ?>>
                         <img src="<?= $imagePath ?>" alt="carte">
                     </button>
                 </form>
@@ -71,7 +77,7 @@ ob_start();
     </div>
 
     <div class="center">
-        <?php if (isset($temps) && count($temps) === 2): ?>
+        <?php if (isset($cards) && count($cards) === 2): ?>
             <form id="auto-form" method="post">
                 <input type="hidden" name="action" value="continue">
             </form>

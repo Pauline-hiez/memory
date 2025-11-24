@@ -1,9 +1,11 @@
 <?php
 
-session_start();
 
-require_once __DIR__ . '/../classes/Database.php';
-require_once __DIR__ . '/../classes/Player.php';
+session_start();
+$message = '';
+
+require_once __DIR__ . '/classes/Database.php';
+require_once __DIR__ . '/classes/Player.php';
 
 $db = Database::getConnexion();
 
@@ -60,7 +62,7 @@ ob_start();
 
     <div class="game-grid">
         <?php
-        require_once __DIR__ . '/../classes/Card.php';
+        require_once __DIR__ . '/classes/Card.php';
         for ($i = 1; $i <= 10; $i++):
             $card = new Card(($i % 5) + 1);
             $imgPath = $card->getImagePath();
@@ -76,5 +78,5 @@ ob_start();
 
 <?php
 $content = ob_get_clean();
-require_once __DIR__ . '/../layout.php';
+require_once __DIR__ . '/layout.php';
 ?>

@@ -13,7 +13,7 @@
     <header class="main-header">
         <div class="header-inner">
             <nav class="main-nav">
-                <a href="/memory/pages/index.php">Accueil</a>
+                <a href="/memory/index.php">Accueil</a>
                 <a href="/memory/pages/game.php">Jouer</a>
                 <a href="/memory/pages/top10.php">Top 10</a>
                 <a href="/memory/pages/profil.php">Profil</a>

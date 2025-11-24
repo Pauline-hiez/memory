@@ -16,7 +16,7 @@ class Card
         return $this->value;
     }
 
-    public function isreveled(): bool
+    public function isReveled(): bool
     {
         return $this->reveled;
     }
@@ -34,7 +34,7 @@ class Card
 
     public function getImagePath(): string
     {
-        return "/memory/assets/img" . $this->getImageName();
+        return "/memory/assets/img/" . $this->getImageName();
     }
 
     private function getImageName()

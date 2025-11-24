@@ -39,8 +39,8 @@ ob_start();
 ?>
 
 <div class="center">
-    <div class="bulle">
-        <h3>Victoire !</h3>
+    <div class="bulle-victory">
+        <h3 class="victory-title">Victoire !</h3>
         <p>Joueur : <?= htmlspecialchars($player->getUsername()) ?></p>
         <p>Coups : <?= (int)$game->getMoves() ?></p>
         <p>Joueur : <?= gmdate('i:s', $game->getDuration()) ?></p>
