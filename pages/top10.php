@@ -15,10 +15,12 @@ ob_start();
 
 <div class="container">
     <div class="bulle">
-        <div class="top-10">
-            <img src="/memory/assets/img/winner.png" alt="winner" class="winner-icon">
-            <h3 class="top-10-title">Top 10</h3>
-            <img src="/memory/assets/img/winner.png" alt="winner" class="winner-icon">
+        <div class="top-10-container">
+            <div class="top-10">
+                <img src="/memory/assets/img/winner.png" alt="winner" class="winner-icon">
+                <h3 class="top-10-title">Top 10</h3>
+                <img src="/memory/assets/img/winner.png" alt="winner" class="winner-icon">
+            </div>
         </div>
     </div>
 

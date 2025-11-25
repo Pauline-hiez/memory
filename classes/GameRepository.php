@@ -48,7 +48,7 @@ class GameRepository
     {
         $pdo = Database::getConnexion();
         $stmt = $pdo->prepare("
-            SELECT MIN(moves) as best_moves, MIN(itme_seconds) as best_time
+            SELECT MIN(moves) as best_moves, MIN(time_seconds) as best_time
             FROM games
             WHERE player_id = ?
         ");

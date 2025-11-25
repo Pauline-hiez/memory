@@ -21,14 +21,14 @@ ob_start();
 ?>
 
 <div class="container">
-    <div class="bulle">
-        <h3>Profil de <?= htmlspecialchars($player->getLogin()) ?></h3>
+    <div class="login">
+        <h2 class="profil-title">Profil de <?= htmlspecialchars($player->getLogin()) ?></h2>
         <p>Meilleur nombre de coups : <?= $best && isset($best['best_moves']) ? (int)$best['best_moves'] : '-' ?></p>
         <p>Meilleur temps : <?= $best && isset($best['best_time']) ? gmdate('i:s', (int)$best['best_time']) : '-' ?></p>
     </div>
 
     <div class="profil">
-        <h4>Historique des parties</h4>
+        <h4 class="profil-history-title">Historique des parties</h4>
         <table class="table">
             <thead>
                 <tr>

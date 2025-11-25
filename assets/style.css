@@ -158,6 +158,14 @@ input[name="username"]:focus {
     cursor: pointer;
 }
 
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 8px;
+}
+
 /* TOP 10 */
 .table {
     width: 80%;
@@ -175,13 +183,24 @@ input[name="username"]:focus {
 }
 
 .top-10 {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 16px;
     margin-bottom: 24px;
     background: var(--background);
     backdrop-filter: blur(8px);
+    border-radius: 18px;
+    box-shadow: var(--box-shadow);
+    padding: 8px 24px;
+}
+
+.top-10-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 24px;
 }
 
 .winner-icon {
@@ -226,6 +245,23 @@ input[name="username"]:focus {
     margin-right: auto;
 }
 
+.profil-history-title {
+    text-align: center;
+    font-size: 1.6rem;
+    margin-bottom: 18px;
+    color: var(--primary-color);
+    text-shadow: var(--text-shadow);
+}
+
+.profil-title {
+    color: var(--primary-color);
+    text-shadow: var(--text-shadow);
+}
+
+.profil th {
+    color: var(--primary-color);
+}
+
 /* PAGE FINISH */
 .bulle-victory {
     max-width: 340px;
@@ -246,6 +282,20 @@ input[name="username"]:focus {
     margin-bottom: 18px;
 }
 
+/* FOOTER */
+.main-footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding: 15px 0;
+    text-align: center;
+    color: var(--primary-color);
+    background: var(--background);
+    backdrop-filter: var(--blur);
+    font-size: 18px;
+    margin-bottom: 0;
+}
 
 
 

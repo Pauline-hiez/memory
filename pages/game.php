@@ -40,17 +40,15 @@ ob_start();
 ?>
 
 <div class="container">
-    <div class="stat-bulle">
-        <p>Nombre de coups : </p><?= (int)$game->getMoves() ?>
-        <p>Temps : </p> <?= gmdate('i:s', (int)$game->getDuration()) ?>
-    </div>
-
-    <div class="center">
-        <div class="btn-center">
-            <form method="post">
-                <button class="btn" name="restart" type="submit">Recommencer</button>
-            </form>
+    <div class="login">
+        <h2>Votre partie</h2>
+        <div class="stat-bulle">
+            <p>Nombre de coups : <?= (int)$game->getMoves() ?></p>
+            <p>Temps : <?= gmdate('i:s', (int)$game->getDuration()) ?></p>
         </div>
+        <form method="post" class="form-pseudo">
+            <button class="btn" name="restart" type="submit">Recommencer</button>
+        </form>
     </div>
 
     <div class="game-grid">
