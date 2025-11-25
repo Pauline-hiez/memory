@@ -20,4 +20,10 @@ class Player
     {
         return $this->login;
     }
+
+    // Pour compatibilité avec finish.php
+    public function getUsername(): string
+    {
+        return $this->login;
+    }
 }

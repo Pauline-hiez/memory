@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['username'])) {
     $_SESSION['player'] = serialize($player);
 
     // Redirection vers le jeu
-    header('Location: game.php');
+    header('Location: pages/game.php');
     exit;
 }
 

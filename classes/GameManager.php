@@ -26,6 +26,8 @@ class GameManager
         $game = self::getGame();
         $deck = $game->getDeck();
 
+        var_dump($_SESSION['temps_reveal']);
+
         if ($deck[$index]->isReveled()) return;
         if (in_array($index, $_SESSION['temps_reveal'])) return;
 
@@ -57,10 +59,10 @@ class GameManager
             $b = $_SESSION['temps_reveal'][1];
             if ($deck[$a]->getValue() !== $deck[$b]->getValue()) {
                 $deck[$a]->hide();
-                $deck[$b]->hide;
+                $deck[$b]->hide();
             }
         }
-        $_SESSION['temp_reveal'] = [];
+        $_SESSION['temps_reveal'] = [];
         self::saveGame($game);
     }
 }

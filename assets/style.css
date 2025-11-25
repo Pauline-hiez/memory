@@ -19,6 +19,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: var(--font);
+    margin-top: 50px; 
 }
 
 /* HEADER */
@@ -35,9 +36,15 @@ body {
     justify-content: center;
     background: var(--background);
     backdrop-filter: var(--blur);
-    border-radius: 18px;
     box-shadow: var(--box-shadow);
     padding: 10px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    z-index: 1000;
+    border-radius: 0;
+    margin: 0;
 }
 
 .main-nav a {
@@ -124,7 +131,7 @@ input[name="username"]:focus {
 .game-grid {
     display: grid;
     grid-template-columns: repeat(5, 150px);
-    grid-gap: 14px;
+    grid-gap: 50px;
     justify-content: center;
     align-items: center;
     margin:10px auto 0 auto;
@@ -139,6 +146,8 @@ input[name="username"]:focus {
     cursor: pointer;
     box-shadow: var(--box-shadow);
     transition: transform 0.15s;
+    overflow: hidden;
+    background: transparent;
 }
 
 .card:hover {
@@ -244,6 +253,9 @@ input[name="username"]:focus {
     margin-left: auto;
     margin-right: auto;
 }
+    .login h2 {
+        margin-bottom: 8px;
+    }
 
 .profil-history-title {
     text-align: center;

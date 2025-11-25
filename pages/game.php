@@ -21,11 +21,16 @@ $game = GameManager::getGame();
 
 if (!isset($_SESSION['game']) || isset($_POST['restart'])) {
     GameManager::startNew();
+    $game = GameManager::getGame();
 }
 
 //Retourne une carte si on clique dessus
 if (isset($_POST['card_index'])) {
     GameManager::revealCard((int)$_POST['card_index']);
+}
+
+if (isset($_POST['action']) && $_POST['action'] == 'continue') {
+    GameManager::restTemp();
 }
 
 //Si partie terminée
@@ -55,11 +60,11 @@ ob_start();
         <?php
         $card = $game->getDeck();
         for ($i = 0; $i < count($card); $i++):
-            // echo "<pre>";
-            // var_dump($card, $i);
-            // echo "</pre>";
-            // exit;
-            $showFace = $card[$i]->isReveled(); //|| in_array($i, $card);
+            //     echo "<pre>";
+            //     var_dump($card, $i);
+            //     echo "</pre>";
+            //     exit;
+            $showFace = $card[$i]->isReveled() || in_array($i, $_SESSION['temps_reveal']);
             $imagePath = $showFace ? $card[$i]->getImagePath() : "/memory/assets/img/carte.jpg";
         ?>
 
@@ -75,7 +80,7 @@ ob_start();
     </div>
 
     <div class="center">
-        <?php if (isset($cards) && count($cards) === 2): ?>
+        <?php if (isset($_SESSION['temps_reveal']) && count($_SESSION['temps_reveal']) === 2): ?>
             <form id="auto-form" method="post">
                 <input type="hidden" name="action" value="continue">
             </form>
