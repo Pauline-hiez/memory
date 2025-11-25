@@ -11,7 +11,7 @@
 
 <body>
     <header class="main-header">
-        <div class="header-inner">
+        <div>
             <nav class="main-nav">
                 <a href="/memory/index.php">Accueil</a>
                 <a href="/memory/pages/game.php">Jouer</a>

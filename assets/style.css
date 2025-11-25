@@ -97,7 +97,7 @@ input[name="username"]:focus {
 /* BULLES */
 .bulles {
     background: var(--background);
-    border: 2px solid rgba(255,255,255,0.22);
+    border: 2px solid var(--primary-color);
     border-radius: 18px;
     padding: 24px;
     width: 60%;
@@ -184,7 +184,7 @@ input[name="username"]:focus {
 }
 
 .table th, .table td {
-    border: 1px solid var(--secondary-color);
+    border: 1px solid var(--primary-color);
     padding: 14px;
     text-align: center;
     background: var(--background);
@@ -229,7 +229,7 @@ input[name="username"]:focus {
 /* PROFIL */
 .profil {
     background: var(--background);
-    border: 2px solid var(--secondary-color);
+    border: 2px solid var(--primary-color);
     padding: 24px;
     border-radius: 18px;
     width: 65%;
@@ -253,9 +253,9 @@ input[name="username"]:focus {
     margin-left: auto;
     margin-right: auto;
 }
-    .login h2 {
-        margin-bottom: 8px;
-    }
+.login h2 {
+    margin-bottom: 8px;
+}
 
 .profil-history-title {
     text-align: center;
@@ -296,7 +296,6 @@ input[name="username"]:focus {
 
 /* FOOTER */
 .main-footer {
-    position: fixed;
     left: 0;
     bottom: 0;
     width: 100%;
@@ -307,7 +306,155 @@ input[name="username"]:focus {
     backdrop-filter: var(--blur);
     font-size: 18px;
     margin-bottom: 0;
+    position: fixed;
 }
 
+/* Tablettes (max 992px) */
+@media (max-width: 992px) {
 
+    .main-nav a {
+        margin: 0 16px;
+        font-size: 24px;
+    }
+
+    .bulles, .profil {
+        width: 80%;
+    }
+
+    .game-grid {
+        grid-template-columns: repeat(4, 120px);
+        grid-gap: 30px;
+    }
+
+    .card {
+        width: 120px;
+        height: 180px;
+    }
+
+    .table {
+        width: 90%;
+        font-size: 16px;
+    }
+
+    .winner-icon {
+        width: 55px;
+        height: 55px;
+    }
+}
+
+/* Mobiles (max 768px) */
+@media (max-width: 768px) {
+
+    body {
+        margin-top: 80px;
+    }
+
+    .main-nav {
+        flex-wrap: wrap;
+        padding: 8px 0;
+    }
+
+    .main-nav a {
+        font-size: 20px;
+        margin: 6px 10px;
+    }
+
+    .bulles, .profil {
+        width: 90%;
+        padding: 18px;
+    }
+
+    .game-grid {
+        grid-template-columns: repeat(3, 110px);
+        grid-gap: 24px;
+    }
+
+    .card {
+        width: 110px;
+        height: 165px;
+    }
+
+    input[name="username"],
+    .btn {
+        width: 100%;
+        max-width: 240px;
+    }
+
+    .table {
+        width: 100%;
+        font-size: 14px;
+    }
+
+    .top-10-title {
+        font-size: 1.5rem;
+    }
+
+    .login {
+        max-width: 90%;
+    }
+}
+
+/* Petits mobiles (max 480px) */
+@media (max-width: 480px) {
+
+    .main-nav a {
+        font-size: 18px;
+        margin: 4px 8px;
+    }
+
+    .bulles, .profil {
+        width: 95%;
+        padding: 14px;
+    }
+
+    .game-grid {
+        grid-template-columns: repeat(2, 110px);
+        grid-gap: 20px;
+    }
+
+    .card {
+        width: 110px;
+        height: 165px;
+    }
+
+    .top-10 {
+        flex-direction: column;
+        text-align: center;
+        padding: 14px;
+    }
+
+    .winner-icon {
+        width: 50px;
+        height: 50px;
+    }
+
+    .table th,
+    .table td {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .bulle-victory {
+        max-width: 280px;
+    }
+}
+
+/* Ultra petits téléphones*/
+@media (max-width: 360px) {
+
+    .main-nav a {
+        font-size: 16px;
+        margin: 4px;
+    }
+
+    .game-grid {
+        grid-template-columns: repeat(2, 95px);
+        grid-gap: 14px;
+    }
+
+    .card {
+        width: 95px;
+        height: 145px;
+    }
+}
 

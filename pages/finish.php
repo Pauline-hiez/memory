@@ -39,11 +39,15 @@ ob_start();
 ?>
 
 <div class="center">
-    <div class="bulle-victory">
-        <h3 class="victory-title">Victoire !</h3>
-        <p>Joueur : <?= htmlspecialchars($player->getUsername()) ?></p>
-        <p>Coups : <?= (int)$game->getMoves() ?></p>
-        <p>Joueur : <?= gmdate('i:s', $game->getDuration()) ?></p>
+    <div class="bulle-victory" style="display: flex; align-items: center; justify-content: center; gap: 16px;">
+        <img src="/memory/assets/img/winner.png" alt="winner" class="winner-icon">
+        <div>
+            <h3 class="victory-title">Victoire !</h3>
+            <p>Joueur : <?= htmlspecialchars($player->getUsername()) ?></p>
+            <p>Coups : <?= (int)$game->getMoves() ?></p>
+            <p>Durée : <?= gmdate('i:s', $game->getDuration()) ?></p>
+        </div>
+        <img src="/memory/assets/img/winner.png" alt="winner" class="winner-icon">
     </div>
 
     <div>
