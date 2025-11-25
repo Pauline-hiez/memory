@@ -29,6 +29,7 @@ if (isset($_POST['card_index'])) {
     GameManager::revealCard((int)$_POST['card_index']);
 }
 
+// Retourne carte si non trouvée
 if (isset($_POST['action']) && $_POST['action'] == 'continue') {
     GameManager::restTemp();
 }
@@ -88,7 +89,7 @@ ob_start();
             <script>
                 setTimeout(function() {
                     document.getElementById('auto-form').submit();
-                }, 1200);
+                }, 800);
             </script>
         <?php endif; ?>
     </div>

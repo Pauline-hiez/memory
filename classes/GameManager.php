@@ -26,8 +26,6 @@ class GameManager
         $game = self::getGame();
         $deck = $game->getDeck();
 
-        var_dump($_SESSION['temps_reveal']);
-
         if ($deck[$index]->isReveled()) return;
         if (in_array($index, $_SESSION['temps_reveal'])) return;
 
