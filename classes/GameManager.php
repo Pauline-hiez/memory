@@ -31,6 +31,8 @@ class GameManager
 
         $_SESSION['temps_reveal'][] = $index;
 
+
+
         if (count($_SESSION['temps_reveal']) === 2) {
             $a = $_SESSION['temps_reveal'][0];
             $b = $_SESSION['temps_reveal'][1];
@@ -40,26 +42,30 @@ class GameManager
             if ($deck[$a]->getValue() === $deck[$b]->getValue()) {
                 $deck[$a]->reveal();
                 $deck[$b]->reveal();
-                $_SESSION['temps_reveal'] = [];
             }
         }
+
         self::saveGame($game);
     }
 
     // Reinitialise le temps
-    public static function restTemp(): void
+    public static function restTemp()
     {
+        if (!isset($_SESSION['temps_reveal']) || count($_SESSION['temps_reveal']) !== 2) {
+            return;
+        }
         $game = self::getGame();
         $deck = $game->getDeck();
+        $a = $_SESSION['temps_reveal'][0];
+        $b = $_SESSION['temps_reveal'][1];
 
-        if (count($_SESSION['temps_reveal']) === 2) {
-            $a = $_SESSION['temps_reveal'][0];
-            $b = $_SESSION['temps_reveal'][1];
-            if ($deck[$a]->getValue() !== $deck[$b]->getValue()) {
-                $deck[$a]->hide();
-                $deck[$b]->hide();
-            }
+        // On ne cache les cartes que si ce n'était pas une paire
+        if (count($_SESSION['temps_reveal']) === 2 && $deck[$a]->getValue() != $deck[$b]->getValue()) {
+            $deck[$a]->hide();
+            $deck[$b]->hide();
         }
+        // }
+        // On vide la sélection temporaire et le flag
         $_SESSION['temps_reveal'] = [];
         self::saveGame($game);
     }

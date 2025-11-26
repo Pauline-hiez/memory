@@ -31,6 +31,7 @@ if (isset($_POST['card_index'])) {
 
 // Retourne carte si non trouvée
 if (isset($_POST['action']) && $_POST['action'] == 'continue') {
+    echo "action";
     GameManager::restTemp();
 }
 
@@ -42,6 +43,16 @@ if ($game->isEnd()) {
 
 $pageTitle = 'Jeu';
 ob_start();
+
+
+$disableClick = (
+    isset($_SESSION['temps_reveal']) &&
+    count($_SESSION['temps_reveal']) === 2 &&
+    (
+        !isset($_SESSION['last_pair']) ||
+        $_SESSION['last_pair'] === false
+    )
+);
 
 ?>
 
@@ -61,10 +72,7 @@ ob_start();
         <?php
         $card = $game->getDeck();
         for ($i = 0; $i < count($card); $i++):
-            //     echo "<pre>";
-            //     var_dump($card, $i);
-            //     echo "</pre>";
-            //     exit;
+
             $showFace = $card[$i]->isReveled() || in_array($i, $_SESSION['temps_reveal']);
             $imagePath = $showFace ? $card[$i]->getImagePath() : "/memory/assets/img/carte.jpg";
         ?>
@@ -72,7 +80,8 @@ ob_start();
             <div>
                 <form method="post">
                     <input type="hidden" name="card_index" value="<?= $i ?>">
-                    <button class="card" type="submit" <?= $card[$i]->isReveled() ? 'disabled' : '' ?>>
+                    <button class="card" type="submit"
+                        <?= $card[$i]->isReveled() || $disableClick ? 'disabled' : '' ?>>
                         <img src="<?= $imagePath ?>" alt="carte">
                     </button>
                 </form>
@@ -81,11 +90,13 @@ ob_start();
     </div>
 
     <div class="center">
-        <?php if (isset($_SESSION['temps_reveal']) && count($_SESSION['temps_reveal']) === 2): ?>
+        <?php if (
+            isset($_SESSION['temps_reveal']) &&
+            count($_SESSION['temps_reveal']) === 2
+        ): ?>
             <form id="auto-form" method="post">
                 <input type="hidden" name="action" value="continue">
             </form>
-            <!-- Retournement automatique des cartes si paire non trouvée -->
             <script>
                 setTimeout(function() {
                     document.getElementById('auto-form').submit();
