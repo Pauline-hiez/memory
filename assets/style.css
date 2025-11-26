@@ -176,6 +176,16 @@ input[name="username"]:focus {
     margin-bottom: 8px;
 }
 
+/* Effet flip JS simple pour les cartes */
+    .card {
+        transition: transform 1.6s cubic-bezier(.4,2,.3,.7);
+        transform-style: preserve-3d;
+    }
+    .card.flipped {
+        transform: rotateY(180deg);
+    }
+    /* Fin effet flip JS */
+
 /* TOP 10 */
 .table {
     width: 80%;

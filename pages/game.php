@@ -68,7 +68,7 @@ $disableClick = (
         </form>
     </div>
 
-    <div class="game-grid">
+    <div class="game-grid" id="game-grid">
         <?php
         $card = $game->getDeck();
         for ($i = 0; $i < count($card); $i++):
@@ -78,7 +78,7 @@ $disableClick = (
         ?>
 
             <div>
-                <form method="post">
+                <form method="post" action="#game-grid">
                     <input type="hidden" name="card_index" value="<?= $i ?>">
                     <button class="card" type="submit"
                         <?= $card[$i]->isReveled() || $disableClick ? 'disabled' : '' ?>>
@@ -102,6 +102,14 @@ $disableClick = (
                     document.getElementById('auto-form').submit();
                 }, 800);
             </script>
+            <!-- Effet flip card -->
+            <script>
+                document.querySelectorAll('.card').forEach(card => {
+                    card.addEventListener('click', function() {
+                        card.classList.toggle('flipped');
+                    });
+                });
+            </script>
         <?php endif; ?>
     </div>
 </div>
@@ -110,4 +118,12 @@ $disableClick = (
 
 $content = ob_get_clean();
 require_once __DIR__ . '/../layout.php';
+?>
+<script>
+    document.querySelectorAll('.card').forEach(card => {
+        card.addEventListener('click', function(e) {
+            card.classList.toggle('flipped');
+        });
+    });
+</script>
 ?>
