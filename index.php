@@ -53,9 +53,9 @@
 
             <form action="index.php" method="post" class="form-pseudo">
                 <input type="text" name="username" placeholder="Votre pseudo" required>
-                <select name="theme" required style="margin:10px 0;">
-                    <option value="vikings">Vikings</option>
-                    <option value="got">Game of Thrones</option>
+                <select class="select" name="theme" required>
+                    <option value="vikings">5 paires - Vikings</option>
+                    <option value="got">10 paires - Game of Thrones</option>
                 </select>
                 <button class="btn" type="submit">Jouer</button>
             </form>

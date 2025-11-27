@@ -81,7 +81,7 @@
                 <button class="btn" name="restart" type="submit">Recommencer</button>
             </form>
         </div>
-        <div class="game-grid" id="game-grid">
+        <div class="game-got game-grid" id="game-grid">
             <?php
             $card = $game->getDeck();
             for ($i = 0; $i < count($card); $i++):
@@ -89,7 +89,7 @@
                 $imagePath = $showFace ? $card[$i]->getImagePath() : "/memory/assets/img/got/carte.jpg";
             ?>
                 <div>
-                    <button class="card" data-index="<?= $i ?>" <?= $card[$i]->isReveled() || $disableClick ? 'disabled' : '' ?> style="width:100px;height:140px;">
+                    <button class="card" data-index="<?= $i ?>" <?= $card[$i]->isReveled() || $disableClick ? 'disabled' : '' ?> style="width:150px;height:200px;">
                         <img src="<?= $imagePath ?>" alt="carte GOT" style="width:100%;height:100%;object-fit:cover;">
                     </button>
                 </div>
