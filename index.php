@@ -53,9 +53,9 @@
 
             <form action="index.php" method="post" class="form-pseudo">
                 <input type="text" name="username" placeholder="Votre pseudo" required>
-                <select name="theme" required style="margin:10px 0;">
-                    <option value="vikings">Vikings</option>
-                    <option value="got">Game of Thrones</option>
+                <select class="select" name="theme" required>
+                    <option value="vikings">5 paires - Vikings</option>
+                    <option value="got">10 paires - Game of Thrones</option>
                 </select>
                 <button class="btn" type="submit">Jouer</button>
             </form>
@@ -64,16 +64,41 @@
         <div class="game-grid">
             <?php
             require_once __DIR__ . '/classes/Card.php';
-            for ($i = 1; $i <= 10; $i++):
-                $card = new Card(($i % 5) + 1);
+            require_once __DIR__ . '/classes/CardGot.php';
+            // Vikings
+            $vikings = [1, 2, 3, 4, 5];
+            // GOT
+            $got = [
+                "arya.jpg",
+                "daenerys.jpg",
+                "drogo.jpg",
+                "hodor.jpg",
+                "jon.jpg",
+                "ned.jpg",
+                "ramsay.jpg",
+                "samwell.png",
+                "tyrion.jpg",
+                "walder.jpg"
+            ];
+            // Mélange des deux jeux
+            $cards = [];
+            foreach ($vikings as $v) {
+                $cards[] = new Card($v);
+            }
+            foreach ($got as $g) {
+                $cards[] = new CardGot($g);
+            }
+            // Mélange aléatoire
+            shuffle($cards);
+            foreach ($cards as $card):
                 $imgPath = $card->getImagePath();
             ?>
                 <div>
                     <button class="card" disabled>
-                        <img src="<?= $imgPath ?>" alt="carte">
+                        <img src="<?= $imgPath ?>" alt="carte" style="width:160px;height:220px;border-radius:12px;box-shadow:0 4px 16px #0002;">
                     </button>
                 </div>
-            <?php endfor; ?>
+            <?php endforeach; ?>
         </div>
     </div>
 

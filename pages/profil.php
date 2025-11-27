@@ -1,61 +1,66 @@
-<?php
+<div class="index">
 
-session_start();
+    <?php
 
-require_once __DIR__ . '/../classes/Database.php';
-require_once __DIR__ . '/../classes/Player.php';
-require_once __DIR__ . '/../classes/GameRepository.php';
+    session_start();
 
-if (!isset($_SESSION['player'])) {
-    header('Location: index.php');
-    exit;
-}
+    require_once __DIR__ . '/../classes/Database.php';
+    require_once __DIR__ . '/../classes/Player.php';
+    require_once __DIR__ . '/../classes/GameRepository.php';
 
-$player = unserialize($_SESSION['player']);
-$history = GameRepository::getHistory($player);
-$best = GameRepository::getBestForPlayer($player) ?? null;
+    if (!isset($_SESSION['player'])) {
+        header('Location: index.php');
+        exit;
+    }
 
-$pageTitle = 'Profil';
-ob_start();
+    $player = unserialize($_SESSION['player']);
+    $history = GameRepository::getHistory($player);
+    $best = GameRepository::getBestForPlayer($player) ?? null;
 
-?>
+    $pageTitle = 'Profil';
+    ob_start();
 
-<div class="container">
-    <div class="login">
-        <h2 class="profil-title">Profil de <?= htmlspecialchars($player->getLogin()) ?></h2>
-        <p>Meilleur nombre de coups : <?= $best && isset($best['best_moves']) ? (int)$best['best_moves'] : '-' ?></p>
-        <p>Meilleur temps : <?= $best && isset($best['best_time']) ? gmdate('i:s', (int)$best['best_time']) : '-' ?></p>
-    </div>
+    ?>
 
-    <div class="profil">
-        <h4 class="profil-history-title">Historique des parties</h4>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Coups</th>
-                    <th>Durée</th>
-                    <th>Date</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php if (empty($history)): ?>
+    <div class="container">
+        <div class="login">
+            <h2 class="profil-title">Profil de <?= htmlspecialchars($player->getLogin()) ?></h2>
+            <p>Meilleur nombre de coups : <?= $best && isset($best['best_moves']) ? (int)$best['best_moves'] : '-' ?></p>
+            <p>Meilleur temps : <?= $best && isset($best['best_time']) ? gmdate('i:s', (int)$best['best_time']) : '-' ?></p>
+        </div>
+
+        <div class="profil">
+            <h4 class="profil-history-title">Historique des parties</h4>
+            <table class="table">
+                <thead>
                     <tr>
-                        <td colspan="3" class="center">Aucune partie</td>
+                        <th>Coups</th>
+                        <th>Durée</th>
+                        <th>Date</th>
                     </tr>
-                <?php else: ?>
-                    <?php foreach ($history as $g): ?>
+                </thead>
+                <tbody>
+                    <?php if (empty($history)): ?>
                         <tr>
-                            <td><?= (int)$g['moves'] ?></td>
-                            <td><?= isset($g['time_seconds']) ? gmdate('i:s', (int)$g['time_seconds']) : '-' ?></td>
-                            <td><?= htmlspecialchars($g['played_at'] ?? '') ?></td>
+                            <td colspan="3" class="center">Aucune partie</td>
                         </tr>
-                    <?php endforeach; ?>
-                <?php endif; ?>
-            </tbody>
-        </table>
+                    <?php else: ?>
+                        <?php foreach ($history as $g): ?>
+                            <tr>
+                                <td><?= (int)$g['moves'] ?></td>
+                                <td><?= isset($g['time_seconds']) ? gmdate('i:s', (int)$g['time_seconds']) : '-' ?></td>
+                                <td><?= htmlspecialchars($g['played_at'] ?? '') ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>
 
-<?php
-$content = ob_get_clean();
-require_once __DIR__ . '/../layout.php';
+    <?php
+    $content = ob_get_clean();
+    require_once __DIR__ . '/../layout.php';
+    ?>
+
+</div>
