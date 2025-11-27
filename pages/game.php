@@ -78,40 +78,14 @@ $disableClick = (
         ?>
 
             <div>
-                <form method="post" action="#game-grid">
-                    <input type="hidden" name="card_index" value="<?= $i ?>">
-                    <button class="card" type="submit"
-                        <?= $card[$i]->isReveled() || $disableClick ? 'disabled' : '' ?>>
-                        <img src="<?= $imagePath ?>" alt="carte">
-                    </button>
-                </form>
+                <button class="card" data-index="<?= $i ?>" <?= $card[$i]->isReveled() || $disableClick ? 'disabled' : '' ?>>
+                    <img src="<?= $imagePath ?>" alt="carte">
+                </button>
             </div>
         <?php endfor; ?>
     </div>
 
-    <div class="center">
-        <?php if (
-            isset($_SESSION['temps_reveal']) &&
-            count($_SESSION['temps_reveal']) === 2
-        ): ?>
-            <form id="auto-form" method="post">
-                <input type="hidden" name="action" value="continue">
-            </form>
-            <script>
-                setTimeout(function() {
-                    document.getElementById('auto-form').submit();
-                }, 800);
-            </script>
-            <!-- Effet flip card -->
-            <script>
-                document.querySelectorAll('.card').forEach(card => {
-                    card.addEventListener('click', function() {
-                        card.classList.toggle('flipped');
-                    });
-                });
-            </script>
-        <?php endif; ?>
-    </div>
+    <div class="center"></div>
 </div>
 
 <?php
@@ -120,10 +94,52 @@ $content = ob_get_clean();
 require_once __DIR__ . '/../layout.php';
 ?>
 <script>
-    document.querySelectorAll('.card').forEach(card => {
-        card.addEventListener('click', function(e) {
-            card.classList.toggle('flipped');
+    // Gestion AJAX des clics sur les cartes
+    document.querySelectorAll('.card').forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            if (btn.disabled) return;
+            const index = btn.getAttribute('data-index');
+            fetch('ajax_game.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: 'card_index=' + index
+                })
+                .then(res => res.json())
+                .then(updateGame)
+                .catch(console.error);
         });
     });
+
+    function updateGame(data) {
+        if (data.isEnd) {
+            window.location.href = 'finish.php';
+            return;
+        }
+        // Met à jour les cartes
+        document.querySelectorAll('.card').forEach(function(btn, i) {
+            btn.disabled = data.cards[i].revealed || data.disableClick;
+            btn.querySelector('img').src = data.cards[i].image;
+        });
+        // Met à jour les stats
+        document.querySelector('.stat-bulle p:nth-child(1)').textContent = 'Nombre de coups : ' + data.moves;
+        document.querySelector('.stat-bulle p:nth-child(2)').textContent = 'Temps : ' + new Date(data.duration * 1000).toISOString().substr(14, 5);
+        // Si besoin d'auto-continuer
+        if (data.needContinue) {
+            setTimeout(function() {
+                fetch('ajax_game.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        },
+                        body: 'action=continue'
+                    })
+                    .then(res => res.json())
+                    .then(updateGame)
+                    .catch(console.error);
+            }, 800);
+        }
+    }
 </script>
-?>
