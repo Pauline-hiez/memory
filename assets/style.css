@@ -141,6 +141,30 @@ input[name="username"]:focus {
 }
 
 /* JEU */
+.got {
+    background-image: url('/memory/assets/img/got/fond.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    margin: 0;
+    padding: 0;
+    font-family: var(--font);
+    margin-top: 50px;
+}
+
+.vikings {
+    background-image: url('/memory/assets/img/vikings/fond.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    margin: 0;
+    padding: 0;
+    font-family: var(--font);
+    margin-top: 50px;
+}
+
 .game-grid {
     display: grid;
     grid-template-columns: repeat(5, 150px);
