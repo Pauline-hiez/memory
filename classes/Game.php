@@ -6,10 +6,14 @@ class Game
     private int $moves = 0;
     private int $startTime;
 
-    public function __construct()
+    public function __construct(array $deck = null)
     {
         $this->startTime = time();
-        $this->initializeDeck();
+        if ($deck !== null) {
+            $this->deck = $deck;
+        } else {
+            $this->initializeDeck();
+        }
     }
 
     public function initializeDeck(): void

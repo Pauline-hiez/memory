@@ -9,36 +9,33 @@
 
     $db = Database::getConnexion();
 
-    if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['username'])) {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['username']) && !empty($_POST['theme'])) {
         $username = trim($_POST['username']);
+        $theme = $_POST['theme'];
 
-        $stmt = $db->prepare("
-        SELECT id FROM players WHERE username = ?
-    ");
-
+        $stmt = $db->prepare("SELECT id FROM players WHERE username = ?");
         $stmt->execute([$username]);
         $row = $stmt->fetch();
 
         if ($row) {
             $playerId = (int)$row['id'];
         } else {
-            $ins = $db->prepare("
-            INSERT INTO players (username)
-            VALUES (?)
-        ");
-
+            $ins = $db->prepare("INSERT INTO players (username) VALUES (?)");
             $ins->execute([$username]);
             $playerId = (int)$db->lastInsertId();
         }
 
         //Instancie Player
         $player = new Player($playerId, $username);
-
         //Sauvegarde en session
         $_SESSION['player'] = serialize($player);
 
-        // Redirection vers le jeu
-        header('Location: pages/game.php');
+        // Redirection selon le thème
+        if ($theme === 'got') {
+            header('Location: pages/game_got.php');
+        } else {
+            header('Location: pages/game.php');
+        }
         exit;
     }
 
@@ -56,6 +53,10 @@
 
             <form action="index.php" method="post" class="form-pseudo">
                 <input type="text" name="username" placeholder="Votre pseudo" required>
+                <select name="theme" required style="margin:10px 0;">
+                    <option value="vikings">Vikings</option>
+                    <option value="got">Game of Thrones</option>
+                </select>
                 <button class="btn" type="submit">Jouer</button>
             </form>
         </div>
