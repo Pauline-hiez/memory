@@ -2,16 +2,16 @@
 
 class Card
 {
-    private int $value;
+    private int|string $value;
     private bool $reveled = false;
 
-    public function __construct(int $value)
+    // $value peut être un int (Vikings) ou un string (GOT)
+    public function __construct(int|string $value)
     {
         $this->value = $value;
     }
 
-    // :int -> Doit retourner un entier
-    public function getValue(): int
+    public function getValue(): int|string
     {
         return $this->value;
     }
@@ -21,7 +21,6 @@ class Card
         return $this->reveled;
     }
 
-    // : void -> Ne doit rien retourner / Cache les cartes
     public function hide(): void
     {
         $this->reveled = false;
