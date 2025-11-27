@@ -14,11 +14,14 @@ class Game
 
     public function initializeDeck(): void
     {
+        $this->deck = [];
         $values = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5]; //Tableau des cartes
         shuffle($values); //Mélange les cartes
 
         foreach ($values as $value) {
-            $this->deck[] = new Card($value);
+            if ($value >= 1 && $value <= 5) {
+                $this->deck[] = new Card($value);
+            }
         }
     }
 

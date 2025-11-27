@@ -16,10 +16,12 @@ if (!isset($_SESSION['player'])) {
 }
 
 // Initialise une nouvelle partie si besoin
+
 $player = unserialize($_SESSION['player']);
 $game = GameManager::getGame();
 
-if (!isset($_SESSION['game']) || isset($_POST['restart'])) {
+// Force la réinitialisation si le deck est corrompu
+if (!isset($_SESSION['game']) || isset($_POST['restart']) || ($game && count($game->getDeck()) !== 10)) {
     GameManager::startNew();
     $game = GameManager::getGame();
 }

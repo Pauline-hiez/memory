@@ -4,6 +4,9 @@ class GameManager
 {
     public static function startNew(): void
     {
+        unset($_SESSION['game']);
+        unset($_SESSION['temps_reveal']);
+        unset($_SESSION['last_pair']);
         $_SESSION['game'] = serialize(new Game());
         $_SESSION['temps_reveal'] = [];
     }
@@ -42,6 +45,9 @@ class GameManager
             if ($deck[$a]->getValue() === $deck[$b]->getValue()) {
                 $deck[$a]->reveal();
                 $deck[$b]->reveal();
+                $_SESSION['last_pair'] = true;
+            } else {
+                $_SESSION['last_pair'] = false;
             }
         }
 
@@ -67,6 +73,7 @@ class GameManager
         // }
         // On vide la sélection temporaire et le flag
         $_SESSION['temps_reveal'] = [];
+        unset($_SESSION['last_pair']);
         self::saveGame($game);
     }
 }

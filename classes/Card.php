@@ -46,7 +46,6 @@ class Card
             4 => "ivar.jpg",
             5 => "floki.jpg"
         ];
-
-        return $map[$this->value];
+        return $map[$this->value] ?? "carte.jpg";
     }
 }
