@@ -42,14 +42,14 @@ ob_start();
 <div class="center">
     <div class="bulle-victory">
         <div class="victory-flex">
-            <img src="/memory/assets/img/winner.png" alt="winner" class="winner-icon">
+            <img src="/memory/assets/img/vikings/winner.png" alt="winner" class="winner-icon">
             <div class="victory-content">
                 <h3 class="victory-title">Victoire !</h3>
                 <p>Joueur : <?= htmlspecialchars($player->getUsername()) ?></p>
                 <p>Coups : <?= (int)$game->getMoves() ?></p>
                 <p>Durée : <?= gmdate('i:s', $game->getDuration()) ?></p>
             </div>
-            <img src="/memory/assets/img/winner.png" alt="winner" class="winner-icon">
+            <img src="/memory/assets/img/vikings/winner.png" alt="winner" class="winner-icon">
         </div>
         <div class="victory-links">
             <a class="btn" href="/memory/pages/game.php">Rejouer</a>

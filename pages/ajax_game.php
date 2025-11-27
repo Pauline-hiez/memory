@@ -29,7 +29,7 @@ foreach ($deck as $i => $card) {
     $showFace = $card->isReveled() || (isset($_SESSION['temps_reveal']) && in_array($i, $_SESSION['temps_reveal']));
     $cards[] = [
         'revealed' => $card->isReveled(),
-        'image' => $showFace ? $card->getImagePath() : '/memory/assets/img/carte.jpg',
+        'image' => $showFace ? $card->getImagePath() : '/memory/assets/img/vikings/carte.jpg',
     ];
 }
 

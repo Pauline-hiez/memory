@@ -74,7 +74,7 @@ $disableClick = (
         for ($i = 0; $i < count($card); $i++):
 
             $showFace = $card[$i]->isReveled() || in_array($i, $_SESSION['temps_reveal']);
-            $imagePath = $showFace ? $card[$i]->getImagePath() : "/memory/assets/img/carte.jpg";
+            $imagePath = $showFace ? $card[$i]->getImagePath() : "/memory/assets/img/vikings/carte.jpg";
         ?>
 
             <div>

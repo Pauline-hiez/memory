@@ -34,7 +34,7 @@ class Card
 
     public function getImagePath(): string
     {
-        return "/memory/assets/img/" . $this->getImageName();
+        return "/memory/assets/img/vikings/" . $this->getImageName();
     }
 
     private function getImageName()
