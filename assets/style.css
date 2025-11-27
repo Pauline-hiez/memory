@@ -1,3 +1,12 @@
+/* Suppression du fond derrière les cartes sur la page d'accueil */
+.index .game-grid {
+    background: none !important;
+    backdrop-filter: none !important;
+}
+.index .game-grid .card {
+    background: transparent !important;
+    box-shadow: none !important;
+}
 /* Taille spécifique pour les cartes du jeu GOT */
 .game-got .card {
     width: 180px;
