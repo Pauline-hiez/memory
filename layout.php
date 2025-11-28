@@ -14,7 +14,6 @@
         <div>
             <nav class="main-nav">
                 <a href="/memory/index.php">Accueil</a>
-                <!-- <a href="/memory/pages/game.php">Jouer</a> -->
                 <a href="/memory/pages/top10.php">Top 10</a>
                 <a href="/memory/pages/profil.php">Profil</a>
             </nav>
