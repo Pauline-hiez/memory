@@ -47,9 +47,9 @@ ob_start();
                 <img src="/memory/assets/img/winner.png" alt="winner" class="winner-icon">
             </div>
             <div class="victory-links">
-                <a class="btn" href="/memory/pages/game_got.php">Rejouer</a>
-                <a class="btn" href="/memory/pages/top10.php">Top 10</a>
-                <a class="btn" href="/memory/pages/profil.php">Mon profil</a>
+                <a class="btn" href="/memory/game/got">Rejouer</a>
+                <a class="btn" href="/memory/top10">Top 10</a>
+                <a class="btn" href="/memory/profil">Mon profil</a>
             </div>
         </div>
     </div>

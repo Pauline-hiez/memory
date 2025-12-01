@@ -1,0 +1,16 @@
+RewriteEngine On
+
+RewriteRule ^memory/assets/style\.css$   /assets/style.css [L]
+
+RewriteRule ^memory/assets/img/(got|vikings)/(.*\.(jpe?g|png))$   /assets/img/$1/$2 [L]
+RewriteRule ^memory/assets/img/(.*\.(png|jpe?g))$   /assets/img/$1 [L]
+
+
+
+RewriteRule ^memory/?$                   /index.php [L]
+RewriteRule ^memory/game/?$              /pages/game.php [L]
+RewriteRule ^memory/game/got/?$          /pages/game_got.php [L]
+RewriteRule ^memory/finish/?$            /pages/finish.php [L]
+RewriteRule ^memory/finish/got/?$        /pages/finish_got.php [L]
+RewriteRule ^memory/top10/?$             /pages/top10.php [L]
+RewriteRule ^memory/profil/?$            /pages/profil.php [L]
